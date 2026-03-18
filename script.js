@@ -56,6 +56,17 @@ document.addEventListener('DOMContentLoaded', function() {
         fadeObserver.observe(section);
     });
 
+    // Плавное появление клипов при загрузке
+    const clipCards = document.querySelectorAll('.clip-card');
+    clipCards.forEach((card, index) => {
+        card.style.opacity = '0';
+        card.style.transition = `opacity 0.6s ease ${index * 0.15}s`;
+        
+        setTimeout(() => {
+            card.style.opacity = '1';
+        }, 100 + index * 150);
+    });
+
     // Параллакс эффект для пузырей с клипами
     const clipsCloud = document.querySelector('.clips-cloud');
     if (clipsCloud) {
@@ -66,12 +77,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 window.requestAnimationFrame(function() {
                     const scrolled = window.pageYOffset;
                     const bubbles = document.querySelectorAll('.clip-card');
-
-                    bubbles.forEach((bubble, index) => {
-                        const speed = 0.1 + (index * 0.02);
-                        const yPos = -(scrolled * speed);
-                        bubble.style.transform = `translateY(${yPos}px)`;
-                    });
 
                     ticking = false;
                 });
