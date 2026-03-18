@@ -1,0 +1,414 @@
+/* Обнуление и базовые стили */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-purple: #8b5cf6;
+    --purple-glow: #a78bfa;
+    --bg-dark: #0a0a0f;
+    --bg-card: #12121a;
+    --text-white: #ffffff;
+    --text-gray: #a1a1aa;
+    --border-color: rgba(139, 92, 246, 0.2);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-white);
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+/* Фоновое видео */
+.video-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.video-background video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+    opacity: 0.15;
+}
+
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(ellipse at center, rgba(139, 92, 246, 0.1) 0%, transparent 70%);
+}
+
+/* Шапка */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 24px 0;
+    z-index: 1000;
+    background: rgba(10, 10, 15, 0.8);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.logo {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--text-white);
+    letter-spacing: -0.5px;
+    text-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
+}
+
+.social-links {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid var(--border-color);
+    color: var(--text-white);
+    transition: all 0.3s ease;
+    background: rgba(139, 92, 246, 0.1);
+}
+
+.social-link:hover {
+    border-color: var(--primary-purple);
+    background: var(--primary-purple);
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
+    transform: translateY(-2px);
+}
+
+.social-link svg {
+    width: 18px;
+    height: 18px;
+}
+
+/* Основной контент */
+.main-content {
+    position: relative;
+    z-index: 1;
+    padding-top: 120px;
+}
+
+/* Hero секция */
+.hero {
+    min-height: 40vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 80px 20px;
+    flex-direction: column;
+}
+
+.hero-avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--primary-purple);
+    box-shadow: 0 0 40px rgba(139, 92, 246, 0.5);
+    margin-bottom: 24px;
+    animation: pulse-glow 3s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+    0%, 100% {
+        box-shadow: 0 0 40px rgba(139, 92, 246, 0.5);
+    }
+    50% {
+        box-shadow: 0 0 60px rgba(139, 92, 246, 0.8);
+    }
+}
+
+.hero-title {
+    font-size: clamp(2rem, 6vw, 3.5rem);
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: var(--text-white);
+    letter-spacing: -1px;
+    text-shadow: 0 0 40px rgba(139, 92, 246, 0.4);
+}
+
+.hero-subtitle {
+    font-size: clamp(0.9rem, 2vw, 1.1rem);
+    color: var(--text-gray);
+    font-weight: 400;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+/* Секция с клипами */
+.clips-section {
+    padding: 100px 20px;
+    background: linear-gradient(180deg, transparent 0%, rgba(139, 92, 246, 0.05) 50%, transparent 100%);
+}
+
+.section-title {
+    font-size: clamp(1.5rem, 4vw, 2.25rem);
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 60px;
+    color: var(--text-white);
+    letter-spacing: -0.5px;
+}
+
+.clips-cloud {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    padding: 40px 20px;
+}
+
+.clip-card {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    background: var(--bg-card);
+    border: 2px solid var(--border-color);
+    transition: all 0.3s ease;
+    animation: float 6s ease-in-out infinite;
+    box-shadow: 0 0 30px rgba(139, 92, 246, 0.1);
+    aspect-ratio: 9 / 16;
+    height: 280px;
+}
+
+.clip-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    border-color: var(--primary-purple);
+    box-shadow: 0 0 50px rgba(139, 92, 246, 0.5);
+}
+
+.clip-card video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+}
+
+.clip-label {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 12px 16px;
+    background: linear-gradient(transparent, rgba(10, 10, 15, 0.95));
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-align: center;
+    color: var(--text-white);
+    border-top: 1px solid var(--border-color);
+}
+
+/* Размеры карточек */
+.bubble-1 {
+    height: 260px;
+    animation-delay: 0s;
+}
+
+.bubble-2 {
+    height: 300px;
+    animation-delay: 1s;
+}
+
+.bubble-3 {
+    height: 280px;
+    animation-delay: 2s;
+}
+
+.bubble-4 {
+    height: 320px;
+    animation-delay: 3s;
+}
+
+.bubble-5 {
+    height: 270px;
+    animation-delay: 4s;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-15px);
+    }
+}
+
+/* Секция "Обо мне" */
+.about-section {
+    padding: 100px 20px;
+}
+
+.about-content {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.about-content p {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--text-gray);
+    margin-bottom: 16px;
+}
+
+.about-content p:last-child {
+    margin-bottom: 0;
+}
+
+/* Подвал */
+.footer {
+    padding: 32px 20px;
+    text-align: center;
+    border-top: 1px solid var(--border-color);
+}
+
+.footer p {
+    color: var(--text-gray);
+    font-size: 0.85rem;
+}
+
+/* Адаптивность для телефонов */
+@media (max-width: 768px) {
+    .header .container {
+        justify-content: center;
+    }
+
+    .logo {
+        font-size: 1.5rem;
+    }
+
+    .social-links {
+        justify-content: center;
+    }
+
+    .social-link {
+        width: 36px;
+        height: 36px;
+    }
+
+    .social-link svg {
+        width: 16px;
+        height: 16px;
+    }
+
+    .main-content {
+        padding-top: 100px;
+    }
+
+    .hero {
+        min-height: 40vh;
+        padding: 40px 20px;
+    }
+
+    .hero-avatar {
+        width: 120px;
+        height: 120px;
+    }
+
+    .clips-cloud {
+        gap: 16px;
+    }
+
+    .clip-card {
+        height: 220px !important;
+    }
+
+    .about-content p {
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo {
+        font-size: 1.25rem;
+    }
+
+    .social-link {
+        width: 32px;
+        height: 32px;
+    }
+
+    .social-link svg {
+        width: 14px;
+        height: 14px;
+    }
+
+    .clip-card {
+        height: 180px !important;
+    }
+
+    .clip-label {
+        font-size: 0.7rem;
+        padding: 6px 8px;
+    }
+}
+
+/* Дополнительные эффекты */
+@media (prefers-reduced-motion: reduce) {
+    .clip-card {
+        animation: none;
+    }
+
+    html {
+        scroll-behavior: auto;
+    }
+}
+
+/* Оптимизация для тач-устройств */
+@media (hover: none) and (pointer: coarse) {
+    .social-link:hover {
+        transform: none;
+    }
+
+    .clip-bubble:hover {
+        transform: scale(1.02);
+    }
+}
